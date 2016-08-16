@@ -44,27 +44,6 @@ function loadFonts(context, target) {
 
             var color = fonts[i];
 
-            // for (var i = 0; i < [textStylesLibrary count]; i++) {
-            //     var current = textStylesLibrary[i];
-            //     if (current.name() == name) {
-
-            //         newText.name = name;
-            //         newText.stringValue = name + ' ' + size + 'px';
-            //         newText.fontSize = size;
-            //         newText.fontPostscriptName = family;
-            //         newText.setTextColor(color)
-
-            //         textStyles.addSharedStyleWithName_firstInstance(name,newText.style());
-
-            //         doc.reloadInspector()
-            //         newText.removeFromParent()
-
-            //         current.newInstance()
-
-            //         return;
-            //     }
-            // }
-
             newText.name = name;
             newText.stringValue = name + ' ' + size + 'px';
             newText.fontSize = size;
@@ -172,10 +151,10 @@ function saveColors(context,target) {
 
 }
 
-function testTwo(context){
+function importFonts(context){
     loadFonts(context, "document");
 }
 
-function test(context) {
+function exportFonts(context) {
     saveColors(context, "document");
 }

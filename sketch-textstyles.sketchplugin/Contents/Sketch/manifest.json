@@ -2,7 +2,7 @@
   "name" : "Sketch Text Styles",
   "identifier" : "",
   "description" : "Import and export text styles.",
-  "version" : "1.0",
+  "version" : "0.8",
   "author" : "Nils Hoenson",
   "authorEmail" : "nils@hoenson.eu",
   "homepage": "",
@@ -11,17 +11,23 @@
   "commands" : [
     {
       "script" : "script.cocoascript",
-      "handler" : "testTwo",
-      "shortcut" : "cmd alt i",
+      "handler" : "importFonts",
+      "shortcut" : "cmd alt n",
       "name" : "Import Text Styles...",
-      "identifier" : "testTwo"
+      "identifier" : "importFonts"
     },
     {
       "script" : "script.cocoascript",
-      "handler" : "test",
+      "handler" : "exportFonts",
       "shortcut" : "cmd alt e",
       "name" : "Export Text Styles...",
-      "identifier" : "test"
+      "identifier" : "exportFonts"
     }
-  ]
+  ],
+  "menu": {
+    "items": [
+      "importFonts",
+      "exportFonts"
+    ]
+  }
 }
