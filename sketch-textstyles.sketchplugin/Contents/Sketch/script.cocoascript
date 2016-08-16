@@ -1,0 +1,181 @@
+// Import and export text styles
+// TO-DO: Letter spacing, alignment and other fun stuff
+
+function loadFonts(context, target) {
+    var app = NSApp.delegate();
+    var doc = context.document;
+    var open = NSOpenPanel.openPanel();
+    var fileTypes = [NSArray arrayWithObjects:@"json",nil];
+
+    // Open file picker to choose palette file
+    open.setAllowedFileTypes(fileTypes);
+    open.setCanChooseDirectories(true);
+    open.setCanChooseFiles(true);
+    open.setCanCreateDirectories(true);
+    open.setTitle("Choose a file");
+    open.setPrompt("Choose");
+    open.runModal();
+
+    // Read contents of file into NSString, then to JSON
+    var filePath = open.URLs().firstObject().path();
+    var fileContents = NSString.stringWithContentsOfFile(filePath);
+    var paletteContents = JSON.parse(fileContents.toString());
+    var palette = paletteContents.styles;
+    var fonts = [];
+
+    if (palette.length > 0) {
+        for (var i = 0; i < palette.length; i++) {
+
+            var size = palette[i].size;
+            var family = palette[i].font;
+            var name = palette[i].name;
+
+            var red = palette[i].color.red;
+            var green = palette[i].color.green;
+            var blue = palette[i].color.blue;
+            var alpha = palette[i].color.alpha;
+
+            var rectTextFrame = NSMakeRect(0, 0, 250, 50);
+            var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
+            var textStyles = doc.documentData().layerTextStyles();
+            var textStylesLibrary = textStyles.objectsSortedByName();
+
+            fonts.push(MSColor.colorWithRed_green_blue_alpha(red, green, blue, alpha))
+
+            var color = fonts[i];
+
+            // for (var i = 0; i < [textStylesLibrary count]; i++) {
+            //     var current = textStylesLibrary[i];
+            //     if (current.name() == name) {
+
+            //         newText.name = name;
+            //         newText.stringValue = name + ' ' + size + 'px';
+            //         newText.fontSize = size;
+            //         newText.fontPostscriptName = family;
+            //         newText.setTextColor(color)
+
+            //         textStyles.addSharedStyleWithName_firstInstance(name,newText.style());
+
+            //         doc.reloadInspector()
+            //         newText.removeFromParent()
+
+            //         current.newInstance()
+
+            //         return;
+            //     }
+            // }
+
+            newText.name = name;
+            newText.stringValue = name + ' ' + size + 'px';
+            newText.fontSize = size;
+            newText.fontPostscriptName = family;
+            newText.setTextColor(color)
+
+            textStyles.addSharedStyleWithName_firstInstance(name,newText.style());
+
+            doc.reloadInspector()
+            newText.removeFromParent()
+        };
+
+        [doc showMessage: 'Text style(s) are imported.']
+
+    } else { NSApp.displayDialog("The file you're importing is empty."); }
+
+}
+
+function saveColors(context,target) {
+
+    var doc = context.document;
+    var app = NSApp.delegate();
+
+    var definedTextStyles = [];
+    var colors = doc.documentData().assets().colors();
+    var text = doc.documentData().layerTextStyles().objects();
+
+    for (var i = 0; i < text.count(); i++) {
+        var style = text.objectAtIndex(i);
+        var attributes = style.style().textStyle().attributes();
+        var textStyle = style
+
+        definedTextStyles.push({
+            "attributes": attributes,
+            "textStyle": style,
+            "name": style.name()
+        });
+
+    }
+
+    // Only run if there are colors
+    if (definedTextStyles.length > 0) {
+
+        var save = NSSavePanel.savePanel();
+        save.setNameFieldStringValue("test.json");
+        save.setAllowedFileTypes([@"json"]);
+        save.setAllowsOtherFileTypes(false);
+        save.setExtensionHidden(false);
+
+        // Open save dialog and run if Save was clicked
+        if (save.runModal()) {
+
+            // Convert MSColors to rgba
+            var styles = [];
+
+            for (var i = 0; i < definedTextStyles.length; i++) {
+
+                var definedTextStyle = definedTextStyles[i];
+
+                var color = definedTextStyle.attributes.NSColor;
+                var red = color.redComponent();
+                var green = color.greenComponent();
+                var blue = color.blueComponent();
+                var alpha = color.alphaComponent();
+
+                var fontString = String(definedTextStyle.attributes.NSFont);
+                var font = fontString.substring(1, fontString.indexOf("pt."));
+                var test = fontString.substring(1,fontString.indexOf(' '));
+                var hmm = String(definedTextStyle.attributes.NSParagraphStyle);
+                var result = hmm.split(' ')[15];
+                var l = test.length;
+                var otherL = font.length - 4;
+                var hope = font.slice(l, otherL);
+                var toInt = parseInt(hope);
+
+                var name = String(definedTextStyle.name);
+
+                styles.push({
+                    name: name,
+                    font: test,
+                    size: toInt,
+                    color: {
+                        red: red,
+                        green: green,
+                        blue: blue,
+                        alpha: alpha
+                    }
+                });
+            };
+
+            // Palette data
+            var fileData = { "styles": styles };
+
+            // Get chosen file path
+            var filePath = save.URL().path();
+
+            // Write file to specified file path
+            var file = NSString.stringWithString(JSON.stringify(fileData));
+
+            [file writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:null];
+
+        }
+
+    } else { NSApp.displayDialog("There are no text styles to export."); }
+
+}
+
+function testTwo(context){
+    loadFonts(context, "document");
+}
+
+function test(context) {
+    saveColors(context, "document");
+}
