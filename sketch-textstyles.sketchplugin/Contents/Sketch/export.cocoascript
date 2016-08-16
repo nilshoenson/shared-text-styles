@@ -1,7 +1,7 @@
 // Import and export text styles
 // TO-DO: Letter spacing, alignment and other fun stuff
 
-function saveColors(context,target) {
+function saveFonts(context,target) {
 
     var doc = context.document;
     var app = NSApp.delegate();
@@ -83,5 +83,5 @@ function saveColors(context,target) {
 }
 
 function exportFonts(context) {
-    saveColors(context, "document");
+    saveFonts(context, "document");
 }
