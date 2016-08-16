@@ -26,7 +26,7 @@ function saveColors(context,target) {
     if (definedTextStyles.length > 0) {
 
         var save = NSSavePanel.savePanel();
-        save.setNameFieldStringValue("test.json");
+        save.setNameFieldStringValue("text-styles.json");
         save.setAllowedFileTypes([@"json"]);
         save.setAllowsOtherFileTypes(false);
         save.setExtensionHidden(false);
