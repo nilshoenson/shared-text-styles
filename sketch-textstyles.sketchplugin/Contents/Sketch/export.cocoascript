@@ -47,10 +47,10 @@ function saveColors(context,target) {
 
                 var fontString = String(definedTextStyle.attributes.NSFont);
                 var font = fontString.substring(1, fontString.indexOf("pt."));
-                var test = fontString.substring(1,fontString.indexOf(' '));
+                var family = fontString.substring(1,fontString.indexOf(' '));
                 var paragraph = String(definedTextStyle.attributes.NSParagraphStyle);
                 var result = paragraph.split(' ')[15];
-                var l = test.length;
+                var l = family.length;
                 var otherL = font.length - 4;
                 var number = font.slice(l, otherL);
                 var toInt = parseInt(number);
@@ -59,7 +59,7 @@ function saveColors(context,target) {
 
                 styles.push({
                     name: name,
-                    font: test,
+                    font: family,
                     size: toInt,
                     color: {
                         red: red,
