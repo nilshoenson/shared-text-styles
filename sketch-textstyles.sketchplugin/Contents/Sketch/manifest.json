@@ -2,22 +2,22 @@
   "name" : "Sketch Text Styles",
   "identifier" : "",
   "description" : "Import and export text styles.",
-  "version" : "0.8",
+  "version" : "1.0",
   "author" : "Nils Hoenson",
   "authorEmail" : "nils@hoenson.eu",
-  "homepage": "",
+  "homepage": "https://github.com/nilshoenson/sketch-text-styles",
   "compatibleVersion": "39",
   "bundleVersion": "1",
   "commands" : [
     {
-      "script" : "script.cocoascript",
+      "script" : "import.cocoascript",
       "handler" : "importFonts",
       "shortcut" : "cmd alt n",
       "name" : "Import Text Styles...",
       "identifier" : "importFonts"
     },
     {
-      "script" : "script.cocoascript",
+      "script" : "export.cocoascript",
       "handler" : "exportFonts",
       "shortcut" : "cmd alt e",
       "name" : "Export Text Styles...",

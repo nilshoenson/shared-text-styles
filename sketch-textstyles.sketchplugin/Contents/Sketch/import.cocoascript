@@ -1,0 +1,64 @@
+// Import and export text styles
+// TO-DO: Letter spacing, alignment and other fun stuff
+
+function loadFonts(context, target) {
+    var app = NSApp.delegate();
+    var doc = context.document;
+    var open = NSOpenPanel.openPanel();
+    var fileTypes = [NSArray arrayWithObjects:@"json",nil];
+
+    // Open file picker
+    open.setAllowedFileTypes(fileTypes);
+    open.setCanChooseDirectories(true);
+    open.setCanChooseFiles(true);
+    open.setCanCreateDirectories(true);
+    open.setTitle("Choose a file");
+    open.setPrompt("Choose");
+    open.runModal();
+
+    var path = open.URLs().firstObject().path();
+    var fileContents = NSString.stringWithContentsOfFile(path);
+    var paletteContents = JSON.parse(fileContents.toString());
+    var palette = paletteContents.styles;
+    var fonts = [];
+
+    if (palette.length > 0) {
+        for (var i = 0; i < palette.length; i++) {
+            var size = palette[i].size;
+            var family = palette[i].font;
+            var name = palette[i].name;
+            var red = palette[i].color.red;
+            var green = palette[i].color.green;
+            var blue = palette[i].color.blue;
+            var alpha = palette[i].color.alpha;
+
+            var rectTextFrame = NSMakeRect(0, 0, 250, 50);
+            var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
+            var textStyles = doc.documentData().layerTextStyles();
+            var textStylesLibrary = textStyles.objectsSortedByName();
+
+            fonts.push(MSColor.colorWithRed_green_blue_alpha(red, green, blue, alpha))
+
+            var color = fonts[i];
+
+            newText.name = name;
+            newText.stringValue = name + ' ' + size + 'px';
+            newText.fontSize = size;
+            newText.fontPostscriptName = family;
+            newText.setTextColor(color)
+
+            textStyles.addSharedStyleWithName_firstInstance(name,newText.style());
+
+            doc.reloadInspector()
+            newText.removeFromParent()
+        };
+
+        [doc showMessage: 'Text style(s) are imported.']
+
+    } else { NSApp.displayDialog("The file you're importing is empty."); }
+
+}
+
+function importFonts(context){
+    loadFonts(context, "document");
+}
