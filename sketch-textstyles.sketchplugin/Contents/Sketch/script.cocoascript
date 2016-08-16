@@ -7,7 +7,7 @@ function loadFonts(context, target) {
     var open = NSOpenPanel.openPanel();
     var fileTypes = [NSArray arrayWithObjects:@"json",nil];
 
-    // Open file picker to choose palette file
+    // Open file picker
     open.setAllowedFileTypes(fileTypes);
     open.setCanChooseDirectories(true);
     open.setCanChooseFiles(true);
@@ -16,20 +16,17 @@ function loadFonts(context, target) {
     open.setPrompt("Choose");
     open.runModal();
 
-    // Read contents of file into NSString, then to JSON
-    var filePath = open.URLs().firstObject().path();
-    var fileContents = NSString.stringWithContentsOfFile(filePath);
+    var path = open.URLs().firstObject().path();
+    var fileContents = NSString.stringWithContentsOfFile(path);
     var paletteContents = JSON.parse(fileContents.toString());
     var palette = paletteContents.styles;
     var fonts = [];
 
     if (palette.length > 0) {
         for (var i = 0; i < palette.length; i++) {
-
             var size = palette[i].size;
             var family = palette[i].font;
             var name = palette[i].name;
-
             var red = palette[i].color.red;
             var green = palette[i].color.green;
             var blue = palette[i].color.blue;
@@ -84,7 +81,6 @@ function saveColors(context,target) {
 
     }
 
-    // Only run if there are colors
     if (definedTextStyles.length > 0) {
 
         var save = NSSavePanel.savePanel();
@@ -93,10 +89,8 @@ function saveColors(context,target) {
         save.setAllowsOtherFileTypes(false);
         save.setExtensionHidden(false);
 
-        // Open save dialog and run if Save was clicked
         if (save.runModal()) {
 
-            // Convert MSColors to rgba
             var styles = [];
 
             for (var i = 0; i < definedTextStyles.length; i++) {
@@ -112,12 +106,12 @@ function saveColors(context,target) {
                 var fontString = String(definedTextStyle.attributes.NSFont);
                 var font = fontString.substring(1, fontString.indexOf("pt."));
                 var test = fontString.substring(1,fontString.indexOf(' '));
-                var hmm = String(definedTextStyle.attributes.NSParagraphStyle);
-                var result = hmm.split(' ')[15];
+                var paragraph = String(definedTextStyle.attributes.NSParagraphStyle);
+                var result = paragraph.split(' ')[15];
                 var l = test.length;
                 var otherL = font.length - 4;
-                var hope = font.slice(l, otherL);
-                var toInt = parseInt(hope);
+                var number = font.slice(l, otherL);
+                var toInt = parseInt(number);
 
                 var name = String(definedTextStyle.name);
 
@@ -134,16 +128,11 @@ function saveColors(context,target) {
                 });
             };
 
-            // Palette data
             var fileData = { "styles": styles };
-
-            // Get chosen file path
-            var filePath = save.URL().path();
-
-            // Write file to specified file path
+            var path = save.URL().path();
             var file = NSString.stringWithString(JSON.stringify(fileData));
 
-            [file writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:null];
+            [file writeToFile:path atomically:true encoding:NSUTF8StringEncoding error:null];
 
         }
 
