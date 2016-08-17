@@ -142,15 +142,15 @@ img {
     }
 }
 
-@media screen and (max-width: 600px) {
-    .col-full {
-        padding: 0 30px;
+@media screen and (max-width: 870px) {
+    .header .col-full {
+        flex-flow: row wrap-reverse;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .header .col-full {
-        flex-flow: row wrap-reverse;
+    .col-full {
+        padding: 0 30px;
     }
 }
 
@@ -250,6 +250,13 @@ img {
     margin: auto;
 }
 
+@media screen and (max-width: 870px) {
+    .logo {
+        width: 160px;
+        margin-bottom: 40px;
+    }
+}
+
 .feature {
     padding: 125px 0 0 0;
 }
@@ -343,6 +350,12 @@ img {
     .footer {
         margin-top: 80px;
         padding: 80px 0;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .footer {
+        display: none;
     }
 }
 
