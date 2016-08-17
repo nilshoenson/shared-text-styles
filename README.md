@@ -1,15 +1,15 @@
-# Sketch Text Styles
-A Sketch plugin that lets you import & export text styles throughout different Sketch documents. Sketch Text Styles is built for Sketch 3.7+
+# Shared Text Styles
+A Sketch plugin that lets you import & export text styles throughout different Sketch documents. Shared Text Styles is built for Sketch 3.7+
 
 [More info](https://nilshoenson.github.io/sketch-text-styles/)
 
 ## Features
-Sketch Text Styles currently let's you import and export text styles through a .json file. More features coming soon!
+Shared Text Styles currently let's you import and export text styles through a .json file. More features coming soon!
 
 ### Export text styles
 To create a consistent typographic style throughout your project, it's a good idea to create an overview of the Text Styles you're going to use in your project.
 
-When you defined your Text Styles, simply go to your Plugins → Sketch Text Styles → Export Text Styles..., to export your Text Styles to a .json file. You can also use the keyboard shortcut `cmd + alt + e`.
+When you defined your Text Styles, simply go to your Plugins → Shared Text Styles → Export Text Styles..., to export your Text Styles to a .json file. You can also use the keyboard shortcut `cmd + alt + e`.
 
 
 ![](http://i.imgur.com/FSVdvaz.gif)
@@ -17,7 +17,7 @@ When you defined your Text Styles, simply go to your Plugins → Sketch Text Sty
 ### Import text styles
 When you've exported your Text Styles, you can import them into any Sketch document, so the typography is consistent.
 
-Go to your Plugins → Sketch Text Styles → Import Text Styles..., to import the Text Styles. You can also use the keyboard shortcut `cmd + alt + n`.
+Go to your Plugins → Shared Text Styles → Import Text Styles..., to import the Text Styles. You can also use the keyboard shortcut `cmd + alt + n`.
 
 ![](http://i.imgur.com/XMp1L5R.gif)
 
@@ -30,4 +30,4 @@ Go to your Plugins → Sketch Text Styles → Import Text Styles..., to import t
 ## Contact/Feedback
 If you have any questions, run into any bugs or have suggestions to improve the plugin: [create an issue](https://github.com/nilshoenson/sketch-text-styles/issues), [hit me up on Twitter](http://twitter.com/nilshoenson) or [send me an email](mailto:nils@hoenson.eu). Feedback is always appreciated!
 
-Sketch Text Styles is made by [Nils Hoenson](https://twitter.com/nilshoenson) with help by [Yummygum](http://yummygum.com) to improve sharing text styles across teams and documents.
+Shared Text Styles is made by [Nils Hoenson](https://twitter.com/nilshoenson) with help by [Yummygum](http://yummygum.com) to improve sharing text styles across teams and documents.
