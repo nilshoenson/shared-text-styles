@@ -335,21 +335,15 @@ img {
 
 .footer {
     margin-top: 125px;
-    padding: 125px 0;
+    padding: 80px 0;
     background-color: #2ccece;
 }
 
-@media screen and (max-width: 1040px) {
-    .footer {
-        margin-top: 100px;
-        padding: 100px 0;
-    }
-}
 
 @media screen and (max-width: 780px) {
     .footer {
         margin-top: 80px;
-        padding: 80px 0;
+        padding: 60px 0;
     }
 }
 
