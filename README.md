@@ -2,16 +2,19 @@
 A Sketch plugin that lets you import & export text styles throughout different Sketch documents.
 
 ## Features
+Sketch Text Styles currently let's you import and export text styles through a .json file. More features coming soon!
+
+### Export text styles
+To create a consistent typographic style throughout your project, it's a good idea to create an overview of the Text Styles you're going to use in your project.
+
+When you defined your Text Styles, simply go to your Plugins → Sketch Text Styles → Export Text Styles, to export your Text Styles to a .json file.
+
+![](http://i.imgur.com/vZNt14I.gif)
 
 ### Import text styles
 You can load text styles into your document, from a generated .json file.
 
 ![](http://i.imgur.com/reDBB0W.gif)
-
-### Export text styles
-You can export the text styles out of your document, into a generated .json file.
-
-![](http://i.imgur.com/vZNt14I.gif)
 
 ## Installing
 1. [Download the ZIP file](https://github.com/nilshoenson/sketch-text-styles/archive/master.zip) and unzip on your machine.
@@ -20,6 +23,6 @@ You can export the text styles out of your document, into a generated .json file
 4. You're done!
 
 ## Contact/Feedback
-If you have any questions, run into any bugs or have suggestions to improve the plugin: [create an issue](https://github.com/nilshoenson/sketch-text-styles/issues) or [hit me up on Twitter](http://twitter.com/nilshoenson). Feedback is always appreciated!
+If you have any questions, run into any bugs or have suggestions to improve the plugin: [create an issue](https://github.com/nilshoenson/sketch-text-styles/issues), [hit me up on Twitter](http://twitter.com/nilshoenson) or [send me an email](mailto:nils@hoenson.eu). Feedback is always appreciated!
 
-Sketch Text Styles is made by [Nils Hoenson](https://twitter.com/nilshoenson) with help by [Yummygum](http://yummygum.com).
+Sketch Text Styles is made by [Nils Hoenson](https://twitter.com/nilshoenson) with help by [Yummygum](http://yummygum.com) to improve sharing text styles across teams and documents.
