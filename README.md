@@ -7,7 +7,7 @@ Sketch Text Styles currently let's you import and export text styles through a .
 ### Export text styles
 To create a consistent typographic style throughout your project, it's a good idea to create an overview of the Text Styles you're going to use in your project.
 
-When you defined your Text Styles, simply go to your Plugins → Sketch Text Styles → Export Text Styles..., to export your Text Styles to a .json file.
+When you defined your Text Styles, simply go to your Plugins → Sketch Text Styles → Export Text Styles..., to export your Text Styles to a .json file. You can also use the keyboard shortcut `cmd + alt + e`.
 
 
 ![](http://i.imgur.com/vZNt14I.gif)
@@ -15,7 +15,7 @@ When you defined your Text Styles, simply go to your Plugins → Sketch Text Sty
 ### Import text styles
 When you've exported your Text Styles, you can import them into any Sketch document, so the typography is consistent.
 
-Go to your Plugins → Sketch Text Styles → Import Text Styles..., to import the Text Styles.
+Go to your Plugins → Sketch Text Styles → Import Text Styles..., to import the Text Styles. You can also use the keyboard shortcut `cmd + alt + n`.
 
 ![](http://i.imgur.com/reDBB0W.gif)
 
