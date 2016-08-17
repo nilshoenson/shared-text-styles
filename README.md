@@ -1,5 +1,5 @@
 # Sketch Text Styles
-A Sketch plugin that lets you import & export text styles throughout different Sketch documents.
+A Sketch plugin that lets you import & export text styles throughout different Sketch documents. Sketch Text Styles is built for Sketch 3.7+
 
 ## Features
 Sketch Text Styles currently let's you import and export text styles through a .json file. More features coming soon!
