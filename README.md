@@ -10,14 +10,14 @@ To create a consistent typographic style throughout your project, it's a good id
 When you defined your Text Styles, simply go to your Plugins → Sketch Text Styles → Export Text Styles..., to export your Text Styles to a .json file. You can also use the keyboard shortcut `cmd + alt + e`.
 
 
-![](http://i.imgur.com/vZNt14I.gif)
+![](http://i.imgur.com/FSVdvaz.gif)
 
 ### Import text styles
 When you've exported your Text Styles, you can import them into any Sketch document, so the typography is consistent.
 
 Go to your Plugins → Sketch Text Styles → Import Text Styles..., to import the Text Styles. You can also use the keyboard shortcut `cmd + alt + n`.
 
-![](http://i.imgur.com/reDBB0W.gif)
+![](http://i.imgur.com/XMp1L5R.gif)
 
 ## Installing
 1. [Download the ZIP file](https://github.com/nilshoenson/sketch-text-styles/archive/master.zip) and unzip on your machine.
