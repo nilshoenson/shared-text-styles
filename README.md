@@ -1,7 +1,7 @@
 # Shared Text Styles
 A Sketch plugin that lets you import & export text styles throughout different Sketch documents. Shared Text Styles is built for Sketch 3.7+
 
-[More info](https://textstyl.es)
+[More info](http:/www./textstyl.es)
 
 ## Features
 Shared Text Styles currently let's you import and export text styles through a .json file. More features coming soon!
