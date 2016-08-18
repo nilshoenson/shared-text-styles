@@ -5,7 +5,7 @@
   "version" : "0.8",
   "author" : "Nils Hoenson/Yummygum",
   "authorEmail" : "nils@hoenson.eu",
-  "homepage": "https://github.com/nilshoenson/sketch-text-styles",
+  "homepage": "https://github.com/nilshoenson/shared-text-styles",
   "compatibleVersion": "39",
   "bundleVersion": "1",
   "commands" : [
