@@ -80,7 +80,6 @@ function saveFonts(context,target) {
                     lineHeight: lineHeight
                 });
 
-                log(spacing)
             };
 
             var fileData = { "styles": styles };
