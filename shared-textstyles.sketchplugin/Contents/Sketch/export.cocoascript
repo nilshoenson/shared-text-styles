@@ -1,5 +1,4 @@
 // Import and export text styles
-// TO-DO: Letter spacing, alignment and other fun stuff
 
 function saveFonts(context,target) {
 
@@ -57,6 +56,15 @@ function saveFonts(context,target) {
 
                 var name = String(definedTextStyle.name);
 
+                var par = definedTextStyle.attributes.NSParagraphStyle;
+                var align = par.alignment();
+
+                // Ugly hack to get spacing to work
+                var spacing = String(definedTextStyle.attributes.NSKern);
+                var spacingInt = spacing * 1;
+
+                var lineHeight = par.maximumLineHeight();
+
                 styles.push({
                     name: name,
                     font: family,
@@ -66,8 +74,13 @@ function saveFonts(context,target) {
                         green: green,
                         blue: blue,
                         alpha: alpha
-                    }
+                    },
+                    alignment: align,
+                    spacing: spacingInt,
+                    lineHeight: lineHeight
                 });
+
+                log(spacing)
             };
 
             var fileData = { "styles": styles };

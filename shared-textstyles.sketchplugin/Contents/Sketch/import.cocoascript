@@ -18,19 +18,22 @@ function loadFonts(context, target) {
 
     var path = open.URLs().firstObject().path();
     var fileContents = NSString.stringWithContentsOfFile(path);
-    var paletteContents = JSON.parse(fileContents.toString());
-    var palette = paletteContents.styles;
+    var stylesContents = JSON.parse(fileContents.toString());
+    var styles = stylesContents.styles;
     var fonts = [];
 
-    if (palette.length > 0) {
-        for (var i = 0; i < palette.length; i++) {
-            var size = palette[i].size;
-            var family = palette[i].font;
-            var name = palette[i].name;
-            var red = palette[i].color.red;
-            var green = palette[i].color.green;
-            var blue = palette[i].color.blue;
-            var alpha = palette[i].color.alpha;
+    if (styles.length > 0) {
+        for (var i = 0; i < styles.length; i++) {
+            var size = styles[i].size;
+            var family = styles[i].font;
+            var name = styles[i].name;
+            var red = styles[i].color.red;
+            var green = styles[i].color.green;
+            var blue = styles[i].color.blue;
+            var alpha = styles[i].color.alpha;
+            var align = styles[i].alignment;
+            var spacing = styles[i].spacing;
+            var lineHeight = styles[i].lineHeight;
 
             var rectTextFrame = NSMakeRect(0, 0, 250, 50);
             var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
@@ -45,7 +48,11 @@ function loadFonts(context, target) {
             newText.stringValue = name + ' ' + size + 'px';
             newText.fontSize = size;
             newText.fontPostscriptName = family;
-            newText.setTextColor(color)
+            newText.textColor = color;
+            newText.textAlignment = align;
+
+            [newText setCharacterSpacing: spacing];
+            [newText setLineHeight: lineHeight];
 
             textStyles.addSharedStyleWithName_firstInstance(name,newText.style());
 
