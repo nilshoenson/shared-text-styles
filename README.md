@@ -26,12 +26,12 @@ Go to your Plugins → Shared Text Styles → Import Text Styles..., to import t
 Using [Sketch Toolbox](http://sketchtoolbox.com/), search for 'Shared Text Styles' and install. Doing so will enable you to automatically receive any updates to Shared Text Styles without having to manually do so.
 
 ### Method 2: Manually
-1. [Download the ZIP file](https://github.com/nilshoenson/sketch-text-styles/archive/master.zip) and unzip on your machine.
-2. Double click the `sketch-textstyles.sketchplugin`
+1. [Download the ZIP file](https://github.com/nilshoenson/shared-text-styles/archive/master.zip) and unzip on your machine.
+2. Double click the `shared-textstyles.sketchplugin`
 3. Restart Sketch.app
 4. You're done!
 
 ## Contact/Feedback
-If you have any questions, run into any bugs or have suggestions to improve the plugin: [create an issue](https://github.com/nilshoenson/sketch-text-styles/issues), [hit me up on Twitter](http://twitter.com/nilshoenson) or [send me an email](mailto:nils@hoenson.eu). Feedback is always appreciated!
+If you have any questions, run into any bugs or have suggestions to improve the plugin: [create an issue](https://github.com/nilshoenson/shared-text-styles/issues), [hit me up on Twitter](http://twitter.com/nilshoenson) or [send me an email](mailto:nils@hoenson.eu). Feedback is always appreciated!
 
 Shared Text Styles is made by [Nils Hoenson](https://twitter.com/nilshoenson) with help by [Yummygum](http://yummygum.com) to improve sharing text styles across teams and documents.
