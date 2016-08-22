@@ -1,4 +1,5 @@
 // Import and export text styles
+// TO-DO: Letter spacing, alignment and other fun stuff
 
 function loadFonts(context, target) {
     var app = NSApp.delegate();
@@ -26,14 +27,10 @@ function loadFonts(context, target) {
             var size = styles[i].size;
             var family = styles[i].font;
             var name = styles[i].name;
-
-            if (color != null) {
-                var red = styles[i].color.red;
-                var green = styles[i].color.green;
-                var blue = styles[i].color.blue;
-                var alpha = styles[i].color.alpha;
-            }
-
+            var red = styles[i].color.red;
+            var green = styles[i].color.green;
+            var blue = styles[i].color.blue;
+            var alpha = styles[i].color.alpha;
             var align = styles[i].alignment;
             var spacing = styles[i].spacing;
             var lineHeight = styles[i].lineHeight;
@@ -43,23 +40,15 @@ function loadFonts(context, target) {
             var textStyles = doc.documentData().layerTextStyles();
             var textStylesLibrary = textStyles.objectsSortedByName();
 
-            if (color != null) {
-                fonts.push(MSColor.colorWithRed_green_blue_alpha(red, green, blue, alpha))
+            fonts.push(MSColor.colorWithRed_green_blue_alpha(red, green, blue, alpha))
 
-                var color = fonts[i];
-            }
+            var color = fonts[i];
 
             newText.name = name;
             newText.stringValue = name + ' ' + size + 'px';
             newText.fontSize = size;
             newText.fontPostscriptName = family;
-
-            if (color != null) {
-                newText.textColor = color;
-            } else {
-                newText.textColor = MSColor.colorWithNSColor(NSColor.colorWithGray(0.0));
-            }
-
+            newText.textColor = color;
             newText.textAlignment = align;
 
             [newText setCharacterSpacing: spacing];
