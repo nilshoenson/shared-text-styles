@@ -204,6 +204,10 @@ img {
     margin-left: auto;
 }
 
+.n-f {
+    display: block;
+}
+
 @media screen and (max-width: 870px) {
     .reverse {
         flex-wrap: wrap-reverse;
@@ -248,6 +252,11 @@ img {
 .logo {
     width: 225px;
     margin: auto;
+}
+
+.logo-small {
+    width: 120px;
+    margin-bottom: 50px;
 }
 
 @media screen and (max-width: 870px) {
@@ -488,4 +497,17 @@ img {
 
 .light {
     color: rgba(255, 255, 255, 0.8)
+}
+
+.releases {
+    margin-top: 100px;
+}
+
+.release {
+    margin-bottom: 20px;
+}
+
+.releases ul {
+    list-style-type: disc;
+    padding-left: 40px;
 }
