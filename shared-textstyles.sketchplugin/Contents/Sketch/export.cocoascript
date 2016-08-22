@@ -39,10 +39,13 @@ function saveFonts(context,target) {
                 var definedTextStyle = definedTextStyles[i];
 
                 var color = definedTextStyle.attributes.NSColor;
-                var red = color.redComponent();
-                var green = color.greenComponent();
-                var blue = color.blueComponent();
-                var alpha = color.alphaComponent();
+
+                if (color != null) {
+                    var red = color.redComponent();
+                    var green = color.greenComponent();
+                    var blue = color.blueComponent();
+                    var alpha = color.alphaComponent();
+                }
 
                 var fontString = String(definedTextStyle.attributes.NSFont);
                 var font = fontString.substring(1, fontString.indexOf("pt."));
@@ -57,13 +60,15 @@ function saveFonts(context,target) {
                 var name = String(definedTextStyle.name);
 
                 var par = definedTextStyle.attributes.NSParagraphStyle;
-                var align = par.alignment();
+
+                if (par != null) {
+                    var align = par.alignment();
+                    var lineHeight = par.maximumLineHeight();
+                }
 
                 // Ugly hack to get spacing to work
                 var spacing = String(definedTextStyle.attributes.NSKern);
                 var spacingInt = spacing * 1;
-
-                var lineHeight = par.maximumLineHeight();
 
                 styles.push({
                     name: name,
