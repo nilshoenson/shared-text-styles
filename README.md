@@ -35,3 +35,8 @@ Using [Sketch Toolbox](http://sketchtoolbox.com/), search for 'Shared Text Style
 If you have any questions, run into any bugs or have suggestions to improve the plugin: [create an issue](https://github.com/nilshoenson/shared-text-styles/issues), [hit me up on Twitter](http://twitter.com/nilshoenson) or [send me an email](mailto:nils@hoenson.eu). Feedback is always appreciated!
 
 Shared Text Styles is made by [Nils Hoenson](https://twitter.com/nilshoenson) with help by [Yummygum](http://yummygum.com) to improve sharing text styles across teams and documents.
+
+## Changelog
+Stay up-to-date with the latest release and check everything that's new or fixed.
+
+[Changelog](http://www.textstyl.es/changelog.html)
