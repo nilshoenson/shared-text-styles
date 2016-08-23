@@ -58,6 +58,10 @@ body {
     body {
         text-align: center;
     }
+
+    .changelog {
+        text-align: left;
+    }
 }
 
 
@@ -501,6 +505,28 @@ img {
 
 .releases {
     margin-top: 100px;
+}
+
+@media screen and (max-width: 870px) {
+    .releases {
+        margin-top: 80px;
+    }
+
+    .releases .mb-medium {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .releases {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .releases {
+        margin-top: 40px;
+    }
 }
 
 .release {
