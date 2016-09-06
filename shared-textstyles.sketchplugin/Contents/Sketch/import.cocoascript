@@ -1,8 +1,16 @@
 // Import and export text styles
 
+var doc;
+var sharedStyles;
+
+function initVars(context) {
+    doc = context.document;
+    sharedStyles = doc.documentData().layerTextStyles()
+}
+
 function loadFonts(context, target) {
+    initVars(context)
     var app = NSApp.delegate();
-    var doc = context.document;
     var open = NSOpenPanel.openPanel();
     var fileTypes = [NSArray arrayWithObjects:@"json",nil];
 
@@ -38,8 +46,6 @@ function loadFonts(context, target) {
 
             var rectTextFrame = NSMakeRect(0, 0, 250, 50);
             var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
-            var textStyles = doc.documentData().layerTextStyles();
-            var textStylesLibrary = textStyles.objectsSortedByName();
 
             fonts.push(MSColor.colorWithRed_green_blue_alpha(red, green, blue, alpha))
 
@@ -57,17 +63,15 @@ function loadFonts(context, target) {
             }
 
             newText.textAlignment = align;
-
             [newText setCharacterSpacing: spacing];
             [newText setLineHeight: lineHeight];
 
-            textStyles.addSharedStyleWithName_firstInstance(name,newText.style());
+            checkForMatchingStyles(context, sharedStyles.objects(), name, newText.style());
+            findLayersWithSharedStyleNamed_inContainer(context, newText.name() , newText.style())
 
             doc.reloadInspector()
-            newText.removeFromParent()
-            log(fonts)
         };
-
+        
         [doc showMessage: 'Text style(s) are imported.']
 
     } else { NSApp.displayDialog("The file you're importing is empty."); }
@@ -77,3 +81,94 @@ function loadFonts(context, target) {
 function importFonts(context){
     loadFonts(context, "document");
 }
+
+function checkForMatchingStyles(context, existingTextObjects, newStyleName, newStyle) {
+    initVars(context)
+
+    if (existingTextObjects.count() != 0) {
+        for (var i = 0; i < existingTextObjects.count(); i++) {
+            var existingName = existingTextObjects[i].name();
+            var style = existingTextObjects.objectAtIndex(i);
+            var textStyle;
+
+            if(existingName == newStyleName) {
+                sharedStyles.updateValueOfSharedObject_byCopyingInstance(existingTextObjects[i], newStyle);
+                return;
+            }
+        }
+
+        sharedStyles.addSharedStyleWithName_firstInstance(newStyleName,newStyle);
+
+    } else {
+        sharedStyles.addSharedStyleWithName_firstInstance(newStyleName,newStyle);
+    }
+}
+
+var findLayersMatchingPredicate_inContainer_filterByType = function(context, predicate, container, layerType) {
+    var scope;
+    initVars(context)
+
+    switch (layerType) {
+        case MSPage : 
+            scope = doc.pages()
+            return scope.filteredArrayUsingPredicate(predicate)
+        break;
+            
+        case MSArtboardGroup :
+            if(typeof container !== 'undefined' && container != nil) {
+                if (container.className == "MSPage") {
+                    scope = container.artboards()
+                    return scope.filteredArrayUsingPredicate(predicate)
+                }
+            } else {
+                // search all pages
+                var filteredArray = NSArray.array()
+                var loopPages = doc.pages().objectEnumerator(), page;
+                while (page = loopPages.nextObject()) {
+                    scope = page.artboards()
+                    filteredArray = filteredArray.arrayByAddingObjectsFromArray(scope.filteredArrayUsingPredicate(predicate))
+                }
+                return filteredArray
+            }
+        break;
+
+        default :
+            if(typeof container !== 'undefined' && container != nil) {
+                scope = container.children()
+                return scope.filteredArrayUsingPredicate(predicate)
+            } else {
+                var filteredArray = NSArray.array()
+                var loopPages = doc.pages().objectEnumerator(), page;
+                while (page = loopPages.nextObject()) {
+                    scope = page.children()
+                    filteredArray = filteredArray.arrayByAddingObjectsFromArray(scope.filteredArrayUsingPredicate(predicate))
+                }
+                return filteredArray
+            }
+    }
+    return NSArray.array() // Return an empty array if no matches were found
+}
+
+var findLayersWithSharedStyleNamed_inContainer = function(context, styleName, newStyle, container) {
+    initVars(context)
+
+    // Get sharedObjectID of shared style with specified name
+    var allStyles = doc.documentData().layerTextStyles().objects()
+    var styleSearchPredicate = NSPredicate.predicateWithFormat("name == %@", styleName)
+    var filteredStyles = allStyles.filteredArrayUsingPredicate(styleSearchPredicate)
+    
+    var filteredLayers = NSArray.array()
+    var loopStyles = filteredStyles.objectEnumerator(), style, predicate;
+   
+    while (style = loopStyles.nextObject()) {
+        predicate = NSPredicate.predicateWithFormat("style.sharedObjectID == %@", style.objectID())
+        filteredLayers = filteredLayers.arrayByAddingObjectsFromArray(findLayersMatchingPredicate_inContainer_filterByType(context, predicate, container))
+    }
+
+    for (var i = 0; i < filteredLayers.length; i++) {
+        filteredLayers[i].style = newStyle;
+    }
+
+    return filteredLayers
+}
+

@@ -21,6 +21,13 @@ Go to your Plugins → Shared Text Styles → Import Text Styles..., to import t
 
 ![](http://i.imgur.com/XMp1L5R.gif)
 
+### Re-Import text styles
+Typography is never done and changes quite a lot. Shared Text Styles let's you re-import Text Styles that overwrite their initial states, so you can keep on iterating.
+
+Go to your Plugins → Shared Text Styles → Import Text Styles..., to re-import the Text Styles. You can also use the keyboard shortcut `cmd + alt + n`.
+
+![](http://i.giphy.com/l0HlHdaHvegs9rZAs.gif)
+
 ## Installing
 ### Method 1: Sketch Toolbox
 Using [Sketch Toolbox](http://sketchtoolbox.com/), search for 'Shared Text Styles' and install. Doing so will enable you to automatically receive any updates to Shared Text Styles without having to manually do so.

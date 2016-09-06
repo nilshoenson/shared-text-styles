@@ -1,8 +1,13 @@
 // Import and export text styles
 
-function saveFonts(context,target) {
+var doc;
 
-    var doc = context.document;
+function initVars(context) {
+    doc = context.document;
+}
+
+function saveFonts(context,target) {
+    initVars(context)
     var app = NSApp.delegate();
 
     var definedTextStyles = [];
@@ -47,17 +52,9 @@ function saveFonts(context,target) {
                     var alpha = color.alphaComponent();
                 }
 
-                var fontString = String(definedTextStyle.attributes.NSFont);
-                var font = fontString.substring(1, fontString.indexOf("pt."));
-                var family = fontString.substring(1,fontString.indexOf(' '));
-                var paragraph = String(definedTextStyle.attributes.NSParagraphStyle);
-                var result = paragraph.split(' ')[15];
-                var l = family.length;
-                var otherL = font.length - 4;
-                var number = font.slice(l, otherL);
-                var toInt = parseInt(number);
-
                 var name = String(definedTextStyle.name);
+                var family = String(definedTextStyle.attributes.NSFont.fontDescriptor().objectForKey(NSFontNameAttribute))
+                var size = String(definedTextStyle.attributes.NSFont.fontDescriptor().objectForKey(NSFontSizeAttribute)) * 1
 
                 var par = definedTextStyle.attributes.NSParagraphStyle;
 
@@ -66,14 +63,12 @@ function saveFonts(context,target) {
                     var lineHeight = par.maximumLineHeight();
                 }
 
-                // Ugly hack to get spacing to work
-                var spacing = String(definedTextStyle.attributes.NSKern);
-                var spacingInt = spacing * 1;
+                var spacing = String(definedTextStyle.attributes.NSKern) * 1;
 
                 styles.push({
                     name: name,
                     font: family,
-                    size: toInt,
+                    size: size,
                     color: {
                         red: red,
                         green: green,
@@ -81,7 +76,7 @@ function saveFonts(context,target) {
                         alpha: alpha
                     },
                     alignment: align,
-                    spacing: spacingInt,
+                    spacing: spacing,
                     lineHeight: lineHeight
                 });
 
