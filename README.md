@@ -26,7 +26,7 @@ Typography is never done and changes quite a lot. Shared Text Styles let's you r
 
 Go to your Plugins → Shared Text Styles → Import Text Styles..., to re-import the Text Styles. You can also use the keyboard shortcut `cmd + alt + n`.
 
-![](http://i.giphy.com/l0HlHdaHvegs9rZAs.gif)
+![](http://i.giphy.com/l3vRgmedusQrkSjTO.gif)
 
 ## Installing
 ### Method 1: Sketch Toolbox
