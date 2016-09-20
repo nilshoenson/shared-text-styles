@@ -6,7 +6,7 @@
   "author" : "Nils Hoenson/Yummygum",
   "authorEmail" : "nils@hoenson.eu",
   "homepage": "https://github.com/nilshoenson/shared-text-styles",
-  "compatibleVersion": "39",
+  "compatibleVersion": "40",
   "bundleVersion": "1",
   "commands" : [
     {
