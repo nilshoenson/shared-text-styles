@@ -1,5 +1,4 @@
 # Shared Text Styles
-[![Github All Releases](https://img.shields.io/github/downloads/nilshoenson/shared-text-styles/total.svg?maxAge=2592000)](https://github.com/nilshoenson/shared-text-styles/releases)
 A Sketch plugin that lets you import & export text styles throughout different Sketch documents. Shared Text Styles is built for Sketch 3.7+
 
 [More info](http:/www.textstyl.es)
