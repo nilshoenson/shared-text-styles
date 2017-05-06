@@ -1,8 +1,8 @@
 {
   "name" : "Shared Text Styles",
-  "identifier" : "",
+  "identifier" : "com.nilshoenson.sketch.shared-text-styles",
   "description" : "Import and export text styles.",
-  "version" : "1.1",
+  "version" : "1.2",
   "author" : "Nils Hoenson/Yummygum",
   "authorEmail" : "nils@hoenson.eu",
   "homepage": "https://github.com/nilshoenson/shared-text-styles",
