@@ -1,0 +1,175 @@
+// Import and export text styles
+
+var doc;
+var sharedStyles;
+
+function initVars(context) {
+    doc = context.document;
+    sharedStyles = doc.documentData().layerTextStyles()
+}
+
+function loadFonts(context, target) {
+    initVars(context)
+    var app = NSApp.delegate();
+    var open = NSOpenPanel.openPanel();
+
+    // Open file picker
+    open.setAllowedFileTypes(["json"]);
+    open.setCanChooseDirectories(true);
+    open.setCanChooseFiles(true);
+    open.setCanCreateDirectories(true);
+    open.setTitle("Choose a file");
+    open.setPrompt("Choose");
+    open.runModal();
+
+    var path = open.URLs().firstObject().path();
+    var fileContents = NSString.stringWithContentsOfFile(path);
+    var stylesContents = JSON.parse(fileContents.toString());
+    var styles = stylesContents.styles;
+    var fonts = [];
+
+    if (styles.length > 0) {
+        for (var i = 0; i < styles.length; i++) {
+            var size = styles[i].size;
+            var family = styles[i].font;
+            var name = styles[i].name;
+
+            var red = styles[i].color.red;
+            var green = styles[i].color.green;
+            var blue = styles[i].color.blue;
+            var alpha = styles[i].color.alpha;
+
+            var align = styles[i].alignment;
+            var spacing = styles[i].spacing;
+            var lineHeight = styles[i].lineHeight;
+
+            var textTransform = styles[i].textTransform;
+
+            var rectTextFrame = NSMakeRect(0, 0, 250, 50);
+            var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
+
+            fonts.push(MSColor.colorWithRed_green_blue_alpha(red, green, blue, alpha))
+
+            var color = fonts[i];
+
+            newText.name = name;
+            newText.stringValue = name + ' ' + size + 'px';
+            newText.fontSize = size;
+            newText.fontPostscriptName = family;
+
+            if (isNaN(red) != true) {
+                newText.textColor = color;
+            } else {
+                newText.textColor = MSColor.colorWithNSColor(NSColor.colorWithGray(0.0));
+            }
+
+            newText.textAlignment = align;
+            [newText setCharacterSpacing: spacing];
+            [newText setLineHeight: lineHeight];
+            newText.addAttribute_value("MSAttributedStringTextTransformAttribute", textTransform)
+
+            checkForMatchingStyles(context, sharedStyles.objects(), name, newText.style());
+            findLayersWithSharedStyleNamed_inContainer(context, newText.name() , newText.style())
+
+            doc.reloadInspector()
+        };
+
+        [doc showMessage: 'Text style(s) are imported.']
+
+    } else { NSApp.displayDialog("The file you're importing is empty."); }
+
+}
+
+function importFonts(context){
+    loadFonts(context, "document");
+}
+
+function checkForMatchingStyles(context, existingTextObjects, newStyleName, newStyle) {
+    initVars(context)
+
+    if (existingTextObjects.count() != 0) {
+        for (var i = 0; i < existingTextObjects.count(); i++) {
+            var existingName = existingTextObjects[i].name();
+            var style = existingTextObjects.objectAtIndex(i);
+            var textStyle;
+
+            if(existingName == newStyleName) {
+                sharedStyles.updateValueOfSharedObject_byCopyingInstance(existingTextObjects[i], newStyle);
+                return;
+            }
+        }
+
+        sharedStyles.addSharedStyleWithName_firstInstance(newStyleName,newStyle);
+
+    } else {
+        sharedStyles.addSharedStyleWithName_firstInstance(newStyleName,newStyle);
+    }
+}
+
+var findLayersMatchingPredicate_inContainer_filterByType = function(context, predicate, container, layerType) {
+    var scope;
+    initVars(context)
+
+    switch (layerType) {
+        case MSPage :
+            scope = doc.pages()
+            return scope.filteredArrayUsingPredicate(predicate)
+        break;
+
+        case MSArtboardGroup :
+            if(typeof container !== 'undefined' && container != nil) {
+                if (container.className == "MSPage") {
+                    scope = container.artboards()
+                    return scope.filteredArrayUsingPredicate(predicate)
+                }
+            } else {
+                // search all pages
+                var filteredArray = NSArray.array()
+                var loopPages = doc.pages().objectEnumerator(), page;
+                while (page = loopPages.nextObject()) {
+                    scope = page.artboards()
+                    filteredArray = filteredArray.arrayByAddingObjectsFromArray(scope.filteredArrayUsingPredicate(predicate))
+                }
+                return filteredArray
+            }
+        break;
+
+        default :
+            if(typeof container !== 'undefined' && container != nil) {
+                scope = container.children()
+                return scope.filteredArrayUsingPredicate(predicate)
+            } else {
+                var filteredArray = NSArray.array()
+                var loopPages = doc.pages().objectEnumerator(), page;
+                while (page = loopPages.nextObject()) {
+                    scope = page.children()
+                    filteredArray = filteredArray.arrayByAddingObjectsFromArray(scope.filteredArrayUsingPredicate(predicate))
+                }
+                return filteredArray
+            }
+    }
+    return NSArray.array() // Return an empty array if no matches were found
+}
+
+var findLayersWithSharedStyleNamed_inContainer = function(context, styleName, newStyle, container) {
+    initVars(context)
+
+    // Get sharedObjectID of shared style with specified name
+    var allStyles = doc.documentData().layerTextStyles().objects()
+    var styleSearchPredicate = NSPredicate.predicateWithFormat("name == %@", styleName)
+    var filteredStyles = allStyles.filteredArrayUsingPredicate(styleSearchPredicate)
+
+    var filteredLayers = NSArray.array()
+    var loopStyles = filteredStyles.objectEnumerator(), style, predicate;
+
+    while (style = loopStyles.nextObject()) {
+        predicate = NSPredicate.predicateWithFormat("style.sharedObjectID == %@", style.objectID())
+        filteredLayers = filteredLayers.arrayByAddingObjectsFromArray(findLayersMatchingPredicate_inContainer_filterByType(context, predicate, container))
+    }
+
+    for (var i = 0; i < filteredLayers.length; i++) {
+        filteredLayers[i].style = newStyle;
+    }
+
+    return filteredLayers
+}

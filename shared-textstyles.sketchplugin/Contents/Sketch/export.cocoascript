@@ -1,0 +1,108 @@
+// Import and export text styles
+
+var doc;
+
+function initVars(context) {
+    doc = context.document;
+}
+
+function saveFonts(context,target) {
+    initVars(context)
+    var app = NSApp.delegate();
+
+    var definedTextStyles = [];
+    var colors = doc.documentData().assets().colors();
+    var text = doc.documentData().layerTextStyles().objects();
+
+    for (var i = 0; i < text.count(); i++) {
+        var style = text.objectAtIndex(i);
+        var attributes = style.style().textStyle().attributes();
+        var textStyle = style
+
+        definedTextStyles.push({
+            "attributes": attributes,
+            "textStyle": style,
+            "name": style.name()
+        });
+
+    }
+
+    if (definedTextStyles.length > 0) {
+
+        var save = NSSavePanel.savePanel();
+        save.setNameFieldStringValue("text-styles.json");
+        save.setAllowedFileTypes([@"json"]);
+        save.setAllowsOtherFileTypes(false);
+        save.setExtensionHidden(false);
+
+        if (save.runModal()) {
+
+            var styles = [];
+
+            for (var i = 0; i < definedTextStyles.length; i++) {
+
+                var definedTextStyle = definedTextStyles[i];
+
+                var color = definedTextStyle.attributes.NSColor;
+
+                if (color != null) {
+                    var red = color.redComponent();
+                    var green = color.greenComponent();
+                    var blue = color.blueComponent();
+                    var alpha = color.alphaComponent();
+                }
+
+                var name = String(definedTextStyle.name);
+                var family = String(definedTextStyle.attributes.NSFont.fontDescriptor().objectForKey(NSFontNameAttribute))
+                var size = String(definedTextStyle.attributes.NSFont.fontDescriptor().objectForKey(NSFontSizeAttribute)) * 1
+
+                var par = definedTextStyle.attributes.NSParagraphStyle;
+
+                if (par != null) {
+                    var align = par.alignment();
+                    var lineHeight = par.maximumLineHeight();
+                }
+
+                var spacing = String(definedTextStyle.attributes.NSKern) * 1;
+
+                var text = definedTextStyle.attributes.MSAttributedStringTextTransformAttribute;
+
+                if (text != null) {
+                    var textTransform = String(definedTextStyle.attributes.MSAttributedStringTextTransformAttribute) * 1;
+                } else {
+                    var textTransform = 0;
+                }
+
+                styles.push({
+                    name: name,
+                    font: family,
+                    size: size,
+                    color: {
+                        red: red,
+                        green: green,
+                        blue: blue,
+                        alpha: alpha
+                    },
+                    alignment: align,
+                    spacing: spacing,
+                    lineHeight: lineHeight,
+                    textTransform: textTransform
+                });
+
+            };
+
+            var fileData = { "styles": styles };
+            var path = save.URL().path();
+            var file = NSString.stringWithString(JSON.stringify(fileData));
+
+            [file writeToFile:path atomically:true encoding:NSUTF8StringEncoding error:null];
+
+        }
+
+    } else { NSApp.displayDialog("There are no text styles to export."); }
+
+}
+
+function exportFonts(context) {
+    saveFonts(context, "document");
+}
