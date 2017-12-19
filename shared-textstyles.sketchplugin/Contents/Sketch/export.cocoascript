@@ -11,6 +11,10 @@ function saveFonts(context,target) {
     var app = NSApp.delegate();
 
     var definedTextStyles = [];
+<<<<<<< HEAD
+=======
+    var colors = doc.documentData().assets().colors();
+>>>>>>> 2840ae52ff9800d0357faf662fb8004eedd2ff34
     var text = doc.documentData().layerTextStyles().objects();
 
     for (var i = 0; i < text.count(); i++) {
@@ -39,9 +43,7 @@ function saveFonts(context,target) {
             var styles = [];
 
             for (var i = 0; i < definedTextStyles.length; i++) {
-
                 var definedTextStyle = definedTextStyles[i];
-
                 var color = definedTextStyle.attributes.MSAttributedStringColorAttribute;
 
                 if (color != null) {
