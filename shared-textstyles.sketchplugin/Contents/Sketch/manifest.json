@@ -3,7 +3,7 @@
   "description" : "Import and export text styles.",
   "author" : "Nils Hoenson/Yummygum",
   "homepage": "https://github.com/nilshoenson/shared-text-styles",
-  "version" : "1.5",
+  "version" : "1.5.2",
   "identifier" : "com.nilshoenson.sketch.shared-text-styles",
   "appcast": "https://raw.githubusercontent.com/nilshoenson/shared-text-styles/master/appcast.xml",
   "compatibleVersion": "40",

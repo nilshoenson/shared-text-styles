@@ -49,5 +49,16 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.5.1.zip" sparkle:version="1.5.1"/>
       </item>
+      <item>
+        <title>Version 1.5.2</title>
+        <description>
+          <![CDATA[
+          <ul>
+            <li>Fixed version number</li>
+          </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.5.2.zip" sparkle:version="1.5.2"/>
+      </item>
   </channel>
 </rss>
