@@ -29,10 +29,6 @@ Go to your Plugins → Shared Text Styles → Import Text Styles..., to re-impor
 ![](http://i.giphy.com/l3vRgmedusQrkSjTO.gif)
 
 ## Installing
-### Method 1: Sketch Toolbox
-Using [Sketch Toolbox](http://sketchtoolbox.com/), search for 'Shared Text Styles' and install. Doing so will enable you to automatically receive any updates to Shared Text Styles without having to manually do so.
-
-### Method 2: Manually
 1. [Download the ZIP file](https://github.com/nilshoenson/shared-text-styles/archive/master.zip) and unzip on your machine.
 2. Double click the `shared-textstyles.sketchplugin`
 3. Restart Sketch.app
