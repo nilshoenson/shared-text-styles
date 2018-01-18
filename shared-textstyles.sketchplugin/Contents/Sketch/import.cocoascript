@@ -23,7 +23,7 @@ function loadFonts(context, target) {
     open.runModal();
 
     var path = open.URLs().firstObject().path();
-    var fileContents = NSString.stringWithContentsOfFile(path);
+    var fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:null];
     var stylesContents = JSON.parse(fileContents.toString());
     var styles = stylesContents.styles;
     var fonts = [];
