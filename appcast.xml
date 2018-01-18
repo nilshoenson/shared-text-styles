@@ -61,7 +61,7 @@
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.5.2.zip" sparkle:version="1.5.2"/>
       </item>
       <item>
-        <title>Version 1.5.3</title>
+        <title>Version 1.5.4</title>
         <description>
           <![CDATA[
           <ul>
@@ -69,7 +69,7 @@
           </ul>
           ]]>
         </description>
-        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.5.3.zip" sparkle:version="1.5.3"/>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.5.4.zip" sparkle:version="1.5.4"/>
       </item>
   </channel>
 </rss>
