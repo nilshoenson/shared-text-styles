@@ -58,6 +58,7 @@ function saveFonts(context,target) {
                 if (par != null) {
                     var align = par.alignment();
                     var lineHeight = par.maximumLineHeight();
+                    var paragraphSpacing = par.paragraphSpacing();
                 }
 
                 var spacing = String(definedTextStyle.attributes.NSKern) * 1;
@@ -83,6 +84,7 @@ function saveFonts(context,target) {
                     alignment: align,
                     spacing: spacing,
                     lineHeight: lineHeight,
+                    paragraphSpacing: paragraphSpacing,
                     textTransform: textTransform
                 });
 

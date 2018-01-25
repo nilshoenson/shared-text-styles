@@ -42,6 +42,7 @@ function loadFonts(context, target) {
 
             var align = styles[i].alignment;
             var spacing = styles[i].spacing;
+            var paragraphSpacing = styles[i].paragraphSpacing;
             var lineHeight = styles[i].lineHeight;
 
             var textTransform = styles[i].textTransform;
@@ -69,6 +70,10 @@ function loadFonts(context, target) {
             [newText setLineHeight: lineHeight];
             newText.addAttribute_value("MSAttributedStringTextTransformAttribute", textTransform)
 
+            var paragraphStyle = newText.paragraphStyle();
+            paragraphStyle.setParagraphSpacing(paragraphSpacing);
+            newText.addAttribute_value("NSParagraphStyle", paragraphStyle);
+            
             checkForMatchingStyles(context, sharedStyles.objects(), name, newText.style());
             findLayersWithSharedStyleNamed_inContainer(context, newText.name() , newText.style())
 
