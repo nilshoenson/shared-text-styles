@@ -71,6 +71,9 @@ function saveFonts(context,target) {
                     var textTransform = 0;
                 }
 
+                var strike = String(definedTextStyle.attributes.NSStrikethrough) * 1
+                var underline = String(definedTextStyle.attributes.NSUnderline) * 1
+
                 styles.push({
                     name: name,
                     font: family,
@@ -85,7 +88,9 @@ function saveFonts(context,target) {
                     spacing: spacing,
                     lineHeight: lineHeight,
                     paragraphSpacing: paragraphSpacing,
-                    textTransform: textTransform
+                    textTransform: textTransform,
+                    strikethrough: strike,
+                    underline: underline
                 });
 
             };
@@ -96,6 +101,7 @@ function saveFonts(context,target) {
 
             [file writeToFile:path atomically:true encoding:NSUTF8StringEncoding error:null];
 
+            [doc showMessage: 'Text style(s) are succesfully saved.']
         }
 
     } else { NSApp.displayDialog("There are no text styles to export."); }

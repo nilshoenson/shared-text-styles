@@ -47,6 +47,9 @@ function loadFonts(context, target) {
 
             var textTransform = styles[i].textTransform;
 
+            var strikethrough = styles[i].strikethrough
+            var underline = styles[i].underline
+
             var rectTextFrame = NSMakeRect(0, 0, 250, 50);
             var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
 
@@ -73,7 +76,10 @@ function loadFonts(context, target) {
             var paragraphStyle = newText.paragraphStyle();
             paragraphStyle.setParagraphSpacing(paragraphSpacing);
             newText.addAttribute_value("NSParagraphStyle", paragraphStyle);
-            
+
+            newText.addAttribute_value("NSStrikethrough", strikethrough);
+            newText.addAttribute_value("NSUnderline", underline);
+
             checkForMatchingStyles(context, sharedStyles.objects(), name, newText.style());
             findLayersWithSharedStyleNamed_inContainer(context, newText.name() , newText.style())
 
