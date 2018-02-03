@@ -83,5 +83,16 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.6.1.zip" sparkle:version="1.6.1"/>
       </item>
+      <item>
+        <title>Version 1.6.2</title>
+        <description>
+          <![CDATA[
+          <ul>
+            <li>Added support for underline and strikethrough values</li>
+          </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.6.2.zip" sparkle:version="1.6.2"/>
+      </item>
   </channel>
 </rss>
