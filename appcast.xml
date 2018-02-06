@@ -94,5 +94,16 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.6.2.zip" sparkle:version="1.6.2"/>
       </item>
+      <item>
+        <title>Version 1.6.3</title>
+        <description>
+          <![CDATA[
+          <ul>
+            <li>Fixed importing issue</li>
+          </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.6.3.zip" sparkle:version="1.6.3"/>
+      </item>
   </channel>
 </rss>

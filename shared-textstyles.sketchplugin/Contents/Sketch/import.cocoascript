@@ -47,8 +47,8 @@ function loadFonts(context, target) {
 
             var textTransform = styles[i].textTransform;
 
-            var strikethrough = styles[i].strikethrough
-            var underline = styles[i].underline
+            var strikethrough = styles[i].strikethrough || 0
+            var underline = styles[i].underline || 0
 
             var rectTextFrame = NSMakeRect(0, 0, 250, 50);
             var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
