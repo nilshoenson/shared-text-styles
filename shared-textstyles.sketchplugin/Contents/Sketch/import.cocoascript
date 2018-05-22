@@ -191,3 +191,5 @@ var findLayersWithSharedStyleNamed_inContainer = function(context, styleName, ne
 
     return filteredLayers
 }
+
+importFonts(context);
