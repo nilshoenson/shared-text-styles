@@ -8,10 +8,6 @@ function initVars(context) {
     sharedStyles = doc.documentData().layerTextStyles()
 }
 
-function nullToZero(value) {
-    return value === null ? 0 : value;
-}
-
 function loadFonts(context, target) {
     initVars(context)
     var app = NSApp.delegate();
@@ -44,15 +40,15 @@ function loadFonts(context, target) {
             var blue = styles[i].color.blue;
             var alpha = styles[i].color.alpha;
 
-            var align = nullToZero(styles[i].alignment);
-            var spacing = nullToZero(styles[i].spacing);
-            var paragraphSpacing = nullToZero(styles[i].paragraphSpacing);
-            var lineHeight = nullToZero(styles[i].lineHeight);
+            var align = styles[i].alignment || 0;
+            var spacing = styles[i].spacing || 0;
+            var paragraphSpacing = styles[i].paragraphSpacing || 0;
+            var lineHeight = styles[i].lineHeight || 0;
 
-            var textTransform = nullToZero(styles[i].textTransform);
+            var textTransform = styles[i].textTransform || 0;
 
-            var strikethrough = nullToZero(styles[i].strikethrough)
-            var underline = nullToZero(styles[i].underline)
+            var strikethrough = styles[i].strikethrough || 0;
+            var underline = styles[i].underline || 0;
 
             var rectTextFrame = NSMakeRect(0, 0, 250, 50);
             var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];

@@ -116,5 +116,16 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.0.zip" sparkle:version="1.7.0"/>
       </item>
+      <item>
+        <title>Version 1.7.1</title>
+        <description>
+          <![CDATA[
+          <ul>
+            <li>Fixed ugly bug with underline and strikethrough values</li>
+          </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.0.zip" sparkle:version="1.7.0"/>
+      </item>
   </channel>
 </rss>
