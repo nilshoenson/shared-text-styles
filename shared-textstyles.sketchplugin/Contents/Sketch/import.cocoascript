@@ -8,6 +8,10 @@ function initVars(context) {
     sharedStyles = doc.documentData().layerTextStyles()
 }
 
+function nullToZero(value) {
+    return value === null ? 0 : value;
+}
+
 function loadFonts(context, target) {
     initVars(context)
     var app = NSApp.delegate();
@@ -40,15 +44,15 @@ function loadFonts(context, target) {
             var blue = styles[i].color.blue;
             var alpha = styles[i].color.alpha;
 
-            var align = styles[i].alignment;
-            var spacing = styles[i].spacing;
-            var paragraphSpacing = styles[i].paragraphSpacing;
-            var lineHeight = styles[i].lineHeight;
+            var align = nullToZero(styles[i].alignment);
+            var spacing = nullToZero(styles[i].spacing);
+            var paragraphSpacing = nullToZero(styles[i].paragraphSpacing);
+            var lineHeight = nullToZero(styles[i].lineHeight);
 
-            var textTransform = styles[i].textTransform;
+            var textTransform = nullToZero(styles[i].textTransform);
 
-            var strikethrough = styles[i].strikethrough || 0
-            var underline = styles[i].underline || 0
+            var strikethrough = nullToZero(styles[i].strikethrough)
+            var underline = nullToZero(styles[i].underline)
 
             var rectTextFrame = NSMakeRect(0, 0, 250, 50);
             var newText = [[MSTextLayer alloc] initWithFrame:rectTextFrame];
@@ -106,15 +110,17 @@ function checkForMatchingStyles(context, existingTextObjects, newStyleName, newS
             var textStyle;
 
             if(existingName == newStyleName) {
-                sharedStyles.updateValueOfSharedObject_byCopyingInstance(existingTextObjects[i], newStyle);
+                existingTextObjects[i].updateToMatch(newStyle)
                 return;
             }
         }
 
-        sharedStyles.addSharedStyleWithName_firstInstance(newStyleName,newStyle);
+        var s = MSSharedStyle.alloc().initWithName_firstInstance(newStyleName,newStyle);
+        sharedStyles.addSharedObject(s);
 
     } else {
-        sharedStyles.addSharedStyleWithName_firstInstance(newStyleName,newStyle);
+        var s = MSSharedStyle.alloc().initWithName_firstInstance(newStyleName,newStyle);
+        sharedStyles.addSharedObject(s);
     }
 }
 

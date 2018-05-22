@@ -105,5 +105,16 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.6.3.zip" sparkle:version="1.6.3"/>
       </item>
+      <item>
+        <title>Version 1.7.0</title>
+        <description>
+          <![CDATA[
+          <ul>
+            <li>Updated plugin to work with Sketch 50</li>
+          </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.0.zip" sparkle:version="1.7.0"/>
+      </item>
   </channel>
 </rss>
