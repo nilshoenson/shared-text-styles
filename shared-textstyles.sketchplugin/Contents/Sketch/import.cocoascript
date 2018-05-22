@@ -106,7 +106,7 @@ function checkForMatchingStyles(context, existingTextObjects, newStyleName, newS
             var textStyle;
 
             if(existingName == newStyleName) {
-                sharedStyles.updateValueOfSharedObject_byCopyingInstance(existingTextObjects[i], newStyle);
+                existingTextObjects[i].updateToMatch(newStyle);
                 return;
             }
         }
