@@ -117,15 +117,15 @@
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.0.zip" sparkle:version="1.7.0"/>
       </item>
       <item>
-        <title>Version 1.7.1</title>
+        <title>Version 1.7.2</title>
         <description>
           <![CDATA[
           <ul>
-            <li>Fixed ugly bug with underline and strikethrough values</li>
+            <li>Fixed ugly bug with empty values</li>
           </ul>
           ]]>
         </description>
-        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.1.zip" sparkle:version="1.7.1"/>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.2.zip" sparkle:version="1.7.2"/>
       </item>
   </channel>
 </rss>
