@@ -111,11 +111,11 @@ function checkForMatchingStyles(context, existingTextObjects, newStyleName, newS
             }
         }
 
-        var s = MSSharedStyle.alloc().initWithName_firstInstance(newStyleName,newStyle);
+        var s = MSSharedStyle.alloc().initWithName_style(newStyleName,newStyle);
         sharedStyles.addSharedObject(s);
 
     } else {
-        var s = MSSharedStyle.alloc().initWithName_firstInstance(newStyleName,newStyle);
+        var s = MSSharedStyle.alloc().initWithName_stylenewStyleName,newStyle);
         sharedStyles.addSharedObject(s);
     }
 }

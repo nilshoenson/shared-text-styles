@@ -127,5 +127,16 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.2.zip" sparkle:version="1.7.2"/>
       </item>
+          <item>
+        <title>Version 1.8</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Updated to work with Sketch 52</li>
+            </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.8.zip" sparkle:version="1.8" type="application/octet-stream" />
+      </item>
   </channel>
 </rss>
