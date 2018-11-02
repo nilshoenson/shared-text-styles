@@ -136,7 +136,7 @@
             </ul>
           ]]>
         </description>
-        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.8.zip" sparkle:version="1.8" type="application/octet-stream" />
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.8.zip" sparkle:version="1.8" />
       </item>
   </channel>
 </rss>
