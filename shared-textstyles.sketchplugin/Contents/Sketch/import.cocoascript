@@ -115,7 +115,7 @@ function checkForMatchingStyles(context, existingTextObjects, newStyleName, newS
         sharedStyles.addSharedObject(s);
 
     } else {
-        var s = MSSharedStyle.alloc().initWithName_stylenewStyleName,newStyle);
+        var s = MSSharedStyle.alloc().initWithName_style(newStyleName,newStyle);
         sharedStyles.addSharedObject(s);
     }
 }
