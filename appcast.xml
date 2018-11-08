@@ -127,7 +127,7 @@
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.7.2.zip" sparkle:version="1.7.2"/>
       </item>
-          <item>
+      <item>
         <title>Version 1.8</title>
         <description>
           <![CDATA[
@@ -137,6 +137,17 @@
           ]]>
         </description>
         <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.8.zip" sparkle:version="1.8" />
+      </item>
+      <item>
+        <title>Version 1.8.1</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Fixed importing bug</li>
+            </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/nilshoenson/shared-text-styles/archive/1.8.1.zip" sparkle:version="1.8" />
       </item>
   </channel>
 </rss>
